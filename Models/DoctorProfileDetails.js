@@ -1,25 +1,33 @@
 const mongoose = require("mongoose");
 
-// 1.  schema design
 
+// 1.  schema design
 const DoctorProfileDetailsSchema = new mongoose.Schema({
     LoginUserEmail: {
         type: String,
         require: true,
     },
-    about: {
+    About: {
         type: String,
         require: true
     },
-    FastName: {
+    DoctorImage: {
         type: String,
         require: true
     },
-    LestName: {
+    FirstName: {
         type: String,
         require: true
     },
-    email: {
+    LastName: {
+        type: String,
+        require: true
+    },
+    Email: {
+        type: String,
+        require: true
+    },
+    Role: {
         type: String,
         require: true
     },
