@@ -1,9 +1,26 @@
-const { createDoctorProfileService, getDoctorProfileService } = require('../service/DoctorProfile.Service');
+const { createDoctorProfileService, getDoctorProfileService, getDoctorDetails } = require('../service/DoctorProfile.Service');
 
 
 exports.getDoctorDetails = async (req, res, next) => {
   try {
     const details = await getDoctorProfileService();
+    res.status(200).json({
+      status: "success",
+      data: details
+    })
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Data is note defind',
+      error: error.message
+    })
+  }
+};
+
+exports.getDoctorDetailsId = async (req, res, next) => {
+  try {
+    const paramsId = req.params.id;
+    const details = await getDoctorDetails(paramsId);
     res.status(200).json({
       status: "success",
       data: details

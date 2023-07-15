@@ -9,3 +9,8 @@ exports.getDoctorProfileService = async () => {
     const result = await DoctorProfileDetails.find();
     return result;
 };
+
+exports.getDoctorDetails = async (id) => {
+    const result = await DoctorProfileDetails.findById(id);
+    return result;
+};
