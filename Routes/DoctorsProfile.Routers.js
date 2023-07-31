@@ -5,8 +5,10 @@ const DoctorProfileControllers = require("../controllers/DoctorsProfile.Controll
 
 router.route("/")
     .get(DoctorProfileControllers.getDoctorDetails)
-    .post(DoctorProfileControllers.createDoctorDetails)
+    .post(DoctorProfileControllers.createDoctorDetails);
 
-router.route("/details/:id").get(DoctorProfileControllers.getDoctorDetailsId)
-// router.post("/", DoctorProfileControllers.createDoctorDetails);
+router.route("/details/:id")
+    .get(DoctorProfileControllers.getDoctorDetailsId)
+    .delete(DoctorProfileControllers.deleteUserById);
+
 module.exports = router;

@@ -1,4 +1,4 @@
-const { createDoctorProfileService, getDoctorProfileService, getDoctorDetails } = require('../service/DoctorProfile.Service');
+const { createDoctorProfileService, getDoctorProfileService, getDoctorDetails, deleteUserProfileById } = require('../service/DoctorProfile.Service');
 
 
 exports.getDoctorDetails = async (req, res, next) => {
@@ -39,6 +39,26 @@ exports.createDoctorDetails = async (req, res, next) => {
   try {
     // create method..
     const result = await createDoctorProfileService(req.body);
+    res.status(200).json({
+      status: 'success',
+      message: 'Data inserted successfully',
+      data: result
+    });
+
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'Data is note inserted',
+      error: error.message
+    })
+  }
+};
+
+exports.deleteUserById = async (req, res, next) => {
+
+  try {
+    const paramsId = req.params.id;
+    const result = await deleteUserProfileById(paramsId);
     res.status(200).json({
       status: 'success',
       message: 'Data inserted successfully',

@@ -11,7 +11,7 @@ const DoctorProfileDetailsSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    DoctorImage: {
+    DoctorProfileImage: {
         type: String,
         require: true
     },
@@ -57,6 +57,18 @@ const DoctorProfileDetailsSchema = new mongoose.Schema({
         require: true
     },
     PushNotifications: {
+        type: String,
+        require: true
+    },
+    DoctorType: {
+        type: String,
+        require: true
+    },
+    WorkingHour: {
+        type: String,
+        require: true
+    },
+    PerHourCharge: {
         type: String,
         require: true
     },

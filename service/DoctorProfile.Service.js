@@ -14,3 +14,7 @@ exports.getDoctorDetails = async (id) => {
     const result = await DoctorProfileDetails.findById(id);
     return result;
 };
+exports.deleteUserProfileById = async (ids) => {
+    const result = await DoctorProfileDetails.findOneAndDelete({ _id: ids });
+    return result;
+};
