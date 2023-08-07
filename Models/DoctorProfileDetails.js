@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const DoctorProfileDetailsSchema = new mongoose.Schema({
     LoginUserEmail: {
         type: String,
-        require: true,
+        require: [true, "please provide a anther email"],
+        trim: true,
+        unique: [true, "that email is used"],
     },
     About: {
         type: String,

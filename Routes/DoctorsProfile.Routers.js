@@ -9,6 +9,7 @@ router.route("/")
 
 router.route("/details/:id")
     .get(DoctorProfileControllers.getDoctorDetailsId)
-    .delete(DoctorProfileControllers.deleteUserById);
+    .delete(DoctorProfileControllers.deleteDoctorById)
+    .patch(DoctorProfileControllers.setRole);
 
 module.exports = router;
