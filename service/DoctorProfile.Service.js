@@ -1,10 +1,16 @@
 const DoctorProfileDetails = require("../Models/DoctorProfileDetails");
 
 exports.getDoctorProfileService = async (filtering, queries) => {
+    console.log("fields2", queries);
     const result = await DoctorProfileDetails.find(filtering)
-        // .select(queries.fields)
+        .skip(queries.skip)
+        .limit(queries.limit)
+        .select(queries.fields)
         .sort(queries.sortBy)
+    // const totalProfile = await DoctorProfileDetails.countDocuments(filtering)
+    // return { totalProfile, result };
     return result;
+
 };
 
 exports.createDoctorProfileService = async (data) => {
@@ -16,6 +22,7 @@ exports.getDoctorDetails = async (id) => {
     const result = await DoctorProfileDetails.findById(id);
     return result;
 };
+
 exports.deleteUserProfileById = async (id) => {
     const result = await DoctorProfileDetails.findOneAndDelete({ _id: id });
     return result;

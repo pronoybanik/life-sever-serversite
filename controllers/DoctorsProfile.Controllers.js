@@ -10,8 +10,8 @@ exports.getDoctorDetails = async (req, res, next) => {
   try {
     let filtering = { ...req.query };
 
-    // sort , ppage, limit -> exclude
-    const excludeFields = ["sort", "page", "limit"];
+    // sort , page, limit -> exclude
+    const excludeFields = ["sort", "page", "limit", "fields"];
     excludeFields.forEach((field) => delete filtering[field]);
 
 
@@ -27,11 +27,19 @@ exports.getDoctorDetails = async (req, res, next) => {
       queriesData.sortBy = sortBy;
     }
 
-    // if (req.query.fields) {
-    //   const fields = req.query.fields.split(",").join(" ");
-    //   queriesData.fields = fields;
-    //   console.log("fields 1",fields);
-    // }
+    if (req.query.fields) {
+      const fields = req.query.fields.split(",").join(" ");
+      queriesData.fields = fields;
+      console.log("fields 1", queriesData);
+    }
+
+    if (req.query.page) {
+      const { page = 1, limit = 10 } = req.query;
+
+      const skip = (page - 1) * parseInt(limit);
+      queriesData.skip = skip;
+      queriesData.limit = parseInt(limit);
+    }
 
     const details = await getDoctorProfileService(filtering, queriesData);
 
