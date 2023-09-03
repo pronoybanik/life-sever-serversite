@@ -4,7 +4,6 @@ const app = express();
 const cors = require("cors");
 const port = 5000;
 require("dotenv").config();
-const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
@@ -13,11 +12,16 @@ app.use(cors());
 app.use(express.json());
 
 
+// Route
+const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
+const Appointment = require("./Routes/appointmentBooking.Routers")
+
 // mongoose patten 
 // 1.schema > 2.model > 3.query
 
 // 3. query
 app.use("/doctorProfile", DoctorProfileRouter);
+app.use("/api/v1/appointment", Appointment);
 
 // Data Base Connection
 mongoose.connect(process.env.DATABASE).then(() => {
@@ -34,9 +38,9 @@ const swaggerOptions = {
             title: 'Node js API project Life sever useIng mongodb',
             version: '1.0.0',
             description: 'That is hospital website ',
-            
+
         },
-        
+
         servers: [
             {
                 url: 'http://localhost:5000',

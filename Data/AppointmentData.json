@@ -1,0 +1,16 @@
+[
+    {
+        "patientName": "pronoy",
+        "patientEmail": "pronoy@gmail.com",
+        "DoctorDetails": "test",
+        "gender": "Male",
+        "phoneNumber": "01605258545",
+        "appointmentStatus": "NewPatient",
+        "appointmentDate": "5255",
+        "durationTime": 40,
+        "reason": "hard",
+        "appointmentType": "onLine",
+        "notes": "test note",
+        "status": "Pending"
+    }
+]
