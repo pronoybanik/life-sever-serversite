@@ -1,7 +1,7 @@
-const DoctorProfileDetails = require("../Models/DoctorProfileDetails");
+const DoctorProfileDetails = require("../Models/DoctorProfiles");
 
 exports.getDoctorProfileService = async (filtering, queries) => {
-    console.log("fields2", queries);
+    // console.log("fields2", queries);
     const result = await DoctorProfileDetails.find(filtering)
         .skip(queries.skip)
         .limit(queries.limit)

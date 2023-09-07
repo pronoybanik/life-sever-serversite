@@ -14,12 +14,16 @@ const appointmentSchema = new mongoose.Schema({
     required: true,
   },
   doctorDetails: {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+    },
     id: {
       type: ObjectId,
       ref: ""
     }
   },
+
   gender: {
     type: String,
     enum: ['Male', 'Female', 'Other'],

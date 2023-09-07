@@ -15,16 +15,21 @@ app.use(express.json());
 // Route
 const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
 const Appointment = require("./Routes/appointmentBooking.Routers")
+const userRoute = require("./Routes/user.Routes")
 
 // mongoose patten 
 // 1.schema > 2.model > 3.query
 
 // 3. query
-app.use("/doctorProfile", DoctorProfileRouter);
+app.use("/api/v1/doctorProfile", DoctorProfileRouter);
 app.use("/api/v1/appointment", Appointment);
+app.use("/api/v1/user", userRoute);
 
 // Data Base Connection
-mongoose.connect(process.env.DATABASE).then(() => {
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
     console.log('database connection is successful');
 });
 
