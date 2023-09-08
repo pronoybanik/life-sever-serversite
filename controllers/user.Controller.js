@@ -33,11 +33,10 @@ exports.login = async (req, res) => {
         console.log(email, password);
 
         const user = await findUserByEmail(email);
-        console.log('user', user);
 
         if (!email || !password) {
             return res.status(401).json({
-                status: "fail",
+                status: "Fail",
                 error: "Please provide your credentials",
             });
         }
@@ -45,15 +44,17 @@ exports.login = async (req, res) => {
 
         if (!user) {
             return res.status(401).json({
-                status: "fail",
+                status: "Fail",
                 error: "No user found. Please create an account",
             });
         }
 
 
-        if (user.password !== password) {
+        const isPasswordValid = user?.comparePassword(password, user.password);
+
+        if (!isPasswordValid) {
             return res.status(403).json({
-                status: "fail",
+                status: "Fail",
                 error: "Password is not correct",
             });
         }
@@ -61,16 +62,17 @@ exports.login = async (req, res) => {
 
         if (user.status != "active") {
             return res.status(401).json({
-                status: "fail",
+                status: "Fail",
                 error: "Your account is not active yet.",
             });
         }
 
         const token = generateToken(user);
 
-        const { password: pwd, confirmPassword, ...others } = user.toObject();
+        const { password: pwd, ...others } = user.toObject();
 
         res.status(200).json({
+            statusbar: 200,
             status: "success",
             message: "Successfully logged in",
             data: {
@@ -82,23 +84,24 @@ exports.login = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             statusbar: 500,
-            status: "fail",
+            status: "Fail",
             error: error.message,
         });
     }
-}
+};
 
 exports.userId = async (req, res) => {
     try {
         const { id } = req.params
         const user = await findUserById(id);
+        const { password, createdAt, updatedAt, __v, ...other } = user.toObject();
+
         res.status(200).json({
             statusbar: 200,
             status: "success",
             message: "Find user ID",
-            data: user._id,
+            data: other,
         });
-
     } catch (error) {
         res.json(500).json({
             statusbar: 500,
@@ -106,4 +109,4 @@ exports.userId = async (req, res) => {
             error: error.message,
         })
     }
-}
+};
