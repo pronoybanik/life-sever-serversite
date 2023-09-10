@@ -11,7 +11,7 @@ exports.createAppointment = async (req, res, next) => {
     } catch (error) {
         console.log(error)
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
             message: "Couldn't create the Appointment",
             error: error.message
         })
