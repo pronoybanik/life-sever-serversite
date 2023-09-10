@@ -77,15 +77,6 @@ const userSchema = mongoose.Schema(
             default: "active",
             enum: ["active", "inactive", "blocked"],
         },
-        doctorProfile: {
-            name: {
-                type: String,
-            },
-            doctorId: {
-                type: ObjectId,
-                ref: "DoctorProfiles",
-            }
-        }
     },
     {
         timestamps: true,

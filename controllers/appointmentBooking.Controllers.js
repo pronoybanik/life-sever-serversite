@@ -105,6 +105,7 @@ exports.updateAppointment = async (req, res, next) => {
         }
 
         res.status(200).json({
+            statusbar: 200,
             status: "success",
             message: "Successfully updated the Appointment"
         });
