@@ -1,4 +1,4 @@
-const { signupService, findUserByEmail, findUserById } = require("../service/user.service");
+const { signupService, findUserByEmail, findUserById, setUserRole } = require("../service/user.service");
 const { generateToken } = require("../utils/token");
 
 exports.signup = async (req, res) => {
@@ -108,5 +108,44 @@ exports.userId = async (req, res) => {
             status: "Fail",
             error: error.message,
         })
+    }
+};
+
+exports.getAllUser = async (req, res, next) => {
+    try {
+
+        const result = await getAllUserService();
+        res.status(200).json({
+            statusbar: 200,
+            status: "success",
+            message: "Data inserted successfully",
+            data: result,
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "Fail",
+            message: "Data is note inserted",
+            error: error.message,
+        });
+    }
+};
+
+exports.userSetRole = async (req, res, next) => {
+    try {
+        const paramsId = req.params.id;
+        console.log(req.body, paramsId);
+        const result = await setUserRole(paramsId, req.body);
+        res.status(200).json({
+            statusbar: 200,
+            status: "success",
+            message: "Data inserted successfully",
+            data: result,
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "Fail",
+            message: "Data is note inserted",
+            error: error.message,
+        });
     }
 };

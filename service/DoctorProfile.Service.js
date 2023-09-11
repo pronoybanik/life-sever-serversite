@@ -1,34 +1,49 @@
-const DoctorProfileDetails = require("../Models/DoctorProfiles");
+const DoctorProfiles = require("../Models/DoctorProfiles");
+const User = require("../Models/user");
 
 exports.getDoctorProfileService = async (filtering, queries) => {
     // console.log("fields2", queries);
-    const result = await DoctorProfileDetails.find(filtering)
+    const result = await DoctorProfiles.find(filtering)
         .skip(queries.skip)
         .limit(queries.limit)
         .select(queries.fields)
         .sort(queries.sortBy)
-    // const totalProfile = await DoctorProfileDetails.countDocuments(filtering)
+    // const totalProfile = await DoctorProfiles.countDocuments(filtering)
     // return { totalProfile, result };
     return result;
 
 };
 
 exports.createDoctorProfileService = async (data) => {
-    const result = await DoctorProfileDetails.create(data);
+    const result = await DoctorProfiles.create(data);
+    const { _id: DoctorId } = result;
+    const res = await User.updateOne(
+        {
+            $push: { doctorId: DoctorId }
+        }
+    );
     return result;
 };
 
 exports.getDoctorDetails = async (id) => {
-    const result = await DoctorProfileDetails.findById(id);
+    const result = await DoctorProfiles.findById(id);
     return result;
 };
 
 exports.deleteUserProfileById = async (id) => {
-    const result = await DoctorProfileDetails.findOneAndDelete({ _id: id });
+    const result = await DoctorProfiles.findOneAndDelete({ _id: id });
     return result;
 };
 
 exports.setDoctorRole = async (id, data) => {
-    const result = await DoctorProfileDetails.updateOne({ _id: id }, { $set: data }, { runValidators: true })
+    const result = await DoctorProfiles.updateOne({ _id: id }, { $set: data }, { runValidators: true })
+    // if (result.acknowledged === true) {
+    //     const res = await User.updateOne(
+
+    //         { Role: "Doctor" }
+
+    //     );
+    //     console.log(res);
+    // }
     return result;
 };

@@ -15,6 +15,20 @@ const userSchema = mongoose.Schema(
             unique: true,
             required: [true, "Email address is required"],
         },
+        firstName: {
+            type: String,
+            required: [true, "Please provide a first name"],
+            trim: true,
+            minLength: [3, "Name must be at least 3 characters."],
+            maxLength: [100, "Name is too large"],
+        },
+        lastName: {
+            type: String,
+            required: [true, "Please provide a last name"],
+            trim: true,
+            minLength: [3, "Name must be at least 3 characters."],
+            maxLength: [100, "Name is too large"],
+        },
         password: {
             type: String,
             required: [true, "Password is required"],
@@ -40,25 +54,22 @@ const userSchema = mongoose.Schema(
                 message: "Passwords don't match!",
             },
         },
-        role: {
+        doctorId: [{
+            type: ObjectId,
+            ref: "DoctorProfile"
+
+        }],
+        Role: {
             type: String,
             enum: ["Patient", "Doctor", "Admin"],
             default: "Patient",
         },
-        firstName: {
+        status: {
             type: String,
-            required: [true, "Please provide a first name"],
-            trim: true,
-            minLength: [3, "Name must be at least 3 characters."],
-            maxLength: [100, "Name is too large"],
+            default: "active",
+            enum: ["active", "inactive", "blocked"],
         },
-        lastName: {
-            type: String,
-            required: [true, "Please provide a last name"],
-            trim: true,
-            minLength: [3, "Name must be at least 3 characters."],
-            maxLength: [100, "Name is too large"],
-        },
+
         contact: {
             number: {
                 type: String,
@@ -72,11 +83,7 @@ const userSchema = mongoose.Schema(
             type: String,
             validate: [validator.isURL, "Please provide a valid url"],
         },
-        status: {
-            type: String,
-            default: "active",
-            enum: ["active", "inactive", "blocked"],
-        },
+
     },
     {
         timestamps: true,

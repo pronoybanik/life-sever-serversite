@@ -49,7 +49,7 @@ exports.getDoctorDetails = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "Fail",
       message: "Data is note defind",
       error: error.message,
     });
@@ -61,12 +61,13 @@ exports.getDoctorDetailsId = async (req, res, next) => {
     const paramsId = req.params.id;
     const details = await getDoctorDetails(paramsId);
     res.status(200).json({
+      statusbar: 200,
       status: "success",
       data: details,
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "Fail",
       message: "Data is note defind",
       error: error.message,
     });
@@ -85,7 +86,7 @@ exports.createDoctorDetails = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "Fail",
       message: "Data is note inserted",
       error: error.message,
     });
@@ -103,7 +104,8 @@ exports.deleteDoctorById = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      statusbar: 400,
+      status: "Fail",
       message: "Data is note inserted",
       error: error.message,
     });
@@ -114,14 +116,16 @@ exports.setRole = async (req, res, next) => {
   try {
     const paramsId = req.params.id;
     const result = await setDoctorRole(paramsId, req.body);
+    console.log(result);
     res.status(200).json({
+      statusbar: 200,
       status: "success",
       message: "Data inserted successfully",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
-      status: "fail",
+      status: "Fail",
       message: "Data is note inserted",
       error: error.message,
     });
