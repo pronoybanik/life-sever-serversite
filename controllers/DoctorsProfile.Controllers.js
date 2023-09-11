@@ -30,7 +30,6 @@ exports.getDoctorDetails = async (req, res, next) => {
     if (req.query.fields) {
       const fields = req.query.fields.split(",").join(" ");
       queriesData.fields = fields;
-      console.log("fields 1", queriesData);
     }
 
     if (req.query.page) {
@@ -116,7 +115,6 @@ exports.setRole = async (req, res, next) => {
   try {
     const paramsId = req.params.id;
     const result = await setDoctorRole(paramsId, req.body);
-    console.log(result);
     res.status(200).json({
       statusbar: 200,
       status: "success",

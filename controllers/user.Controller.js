@@ -30,7 +30,6 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password);
 
         const user = await findUserByEmail(email);
 
@@ -133,7 +132,6 @@ exports.getAllUser = async (req, res, next) => {
 exports.userSetRole = async (req, res, next) => {
     try {
         const paramsId = req.params.id;
-        console.log(req.body, paramsId);
         const result = await setUserRole(paramsId, req.body);
         res.status(200).json({
             statusbar: 200,

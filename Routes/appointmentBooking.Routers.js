@@ -12,4 +12,7 @@ router.route("/:id")
     .patch(appointment.updateAppointment)
     .delete(appointment.deleteAppointmentById)
 
+router.route('/userId/:id').get(appointment.getAppointmentByUserId)
+router.route('/doctorId/:id').get(appointment.getAppointmentByDoctorDetailsId)
+
 module.exports = router;

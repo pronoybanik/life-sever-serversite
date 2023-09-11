@@ -18,6 +18,5 @@ exports.getAllUserService = async () => {
 
 exports.setUserRole = async (id, data) => {
     const result = await User.updateOne({ _id: id }, { $set: data }, { runValidators: true })
-    console.log("test 1", result);
     return result;
 };

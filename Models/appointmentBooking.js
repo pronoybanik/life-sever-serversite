@@ -5,6 +5,10 @@ const { ObjectId } = mongoose.Schema.Types;
 
 // Define the schema
 const appointmentSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true
+  },
   patientName: {
     type: String,
     required: true,
@@ -13,16 +17,16 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // doctorDetails: {
-  //   name: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   id: {
-  //     type: ObjectId,
-  //     ref: ""
-  //   }
-  // },
+  doctorDetails: {
+    name: {
+      type: String,
+      required: true,
+    },
+    doctorId: {
+      type: ObjectId,
+      ref: "doctorProfile"
+    }
+  },
 
   gender: {
     type: String,

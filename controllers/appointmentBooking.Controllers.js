@@ -1,15 +1,15 @@
-const { createAppointmentService, getAppointmentsService, getAppointmentByIdService, updateAppointmentService, deleteAppointmentByIdService } = require("../service/appointmentBooking.Service");
+const { createAppointmentService, getAppointmentsService, getAppointmentByIdService, updateAppointmentService, deleteAppointmentByIdService, getAppointmentDoctorByIdService, getAppointmentByUserIdService } = require("../service/appointmentBooking.Service");
 
 exports.createAppointment = async (req, res, next) => {
     try {
         const result = await createAppointmentService(req.body);
 
         res.status(200).json({
+            statusbar: 200,
             status: "success",
             message: "Successfully created the Appointment"
         })
     } catch (error) {
-        console.log(error)
         res.status(400).json({
             status: "Fail",
             message: "Couldn't create the Appointment",
@@ -27,9 +27,59 @@ exports.getAppointments = async (req, res, next) => {
             data: Appointments
         });
     } catch (error) {
-        console.log(error);
         res.status(400).json({
             status: "fail",
+            message: "Couldn't get the Appointments",
+            error: error.message
+        });
+    }
+};
+
+exports.getAppointmentByUserId = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        
+        const Appointment = await getAppointmentByUserIdService(id);
+
+        if (!Appointment) {
+            return res.status(400).json({
+                status: "fail",
+                error: "Couldn't find a Appointment with this id"
+            })
+        }
+
+        res.status(200).json({
+            status: "success",
+            data: Appointment,
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "Fail",
+            message: "Couldn't get the Appointments",
+            error: error.message
+        });
+    }
+};
+exports.getAppointmentByDoctorDetailsId = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        
+        const Appointment = await getAppointmentDoctorByIdService(id);
+
+        if (!Appointment) {
+            return res.status(400).json({
+                status: "fail",
+                error: "Couldn't find a Appointment with this id"
+            })
+        }
+
+        res.status(200).json({
+            status: "success",
+            data: Appointment,
+        });
+    } catch (error) {
+        res.status(400).json({
+            status: "Fail",
             message: "Couldn't get the Appointments",
             error: error.message
         });
@@ -53,7 +103,6 @@ exports.getAppointmentById = async (req, res, next) => {
             data: Appointment,
         });
     } catch (error) {
-        console.log(error);
         res.status(400).json({
             status: "fail",
             message: "Couldn't get the Appointments",
@@ -94,7 +143,6 @@ exports.updateAppointment = async (req, res, next) => {
     try {
         const result = await updateAppointmentService(id, req.body);
 
-        console.log("result", result);
 
 
         if (!result.modifiedCount) {
@@ -110,7 +158,6 @@ exports.updateAppointment = async (req, res, next) => {
             message: "Successfully updated the Appointment"
         });
     } catch (error) {
-        console.log(error);
         res.status(400).json({
             status: "fail",
             error: "Couldn't update the Appointment",

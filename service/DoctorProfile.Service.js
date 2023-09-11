@@ -37,13 +37,5 @@ exports.deleteUserProfileById = async (id) => {
 
 exports.setDoctorRole = async (id, data) => {
     const result = await DoctorProfiles.updateOne({ _id: id }, { $set: data }, { runValidators: true })
-    // if (result.acknowledged === true) {
-    //     const res = await User.updateOne(
-
-    //         { Role: "Doctor" }
-
-    //     );
-    //     console.log(res);
-    // }
     return result;
 };
