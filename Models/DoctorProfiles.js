@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const doctorProfileSchema = mongoose.Schema({
+    userId: {
+        type: String,
+        required: true
+    },
     LoginUserEmail: {
         type: String,
         required: true,
-        // unique: true,
+        unique: true,
     },
     About: String,
     StreetAddress: String,
@@ -32,6 +36,11 @@ const doctorProfileSchema = mongoose.Schema({
         type: String,
         enum: ['Doctor', "Null"], // Assuming this is a doctor-specific schema
         default: "Null"
+    },
+    status: {
+        type: String,
+        enum: ['Active', "inActive", "Blocked"], // Assuming this is a doctor-specific schema
+        default: "Active"
     },
     DoctorType: String,
     WorkingHour: String,

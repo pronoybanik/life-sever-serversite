@@ -57,7 +57,6 @@ const userSchema = mongoose.Schema(
         doctorId: [{
             type: ObjectId,
             ref: "DoctorProfile"
-
         }],
         Role: {
             type: String,

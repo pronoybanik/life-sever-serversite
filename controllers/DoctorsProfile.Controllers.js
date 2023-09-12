@@ -78,6 +78,7 @@ exports.createDoctorDetails = async (req, res, next) => {
   try {
     // create method..
     const result = await createDoctorProfileService(req.body);
+
     res.status(200).json({
       status: "success",
       message: "Data inserted successfully",

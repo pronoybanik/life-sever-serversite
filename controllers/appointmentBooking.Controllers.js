@@ -147,7 +147,7 @@ exports.updateAppointment = async (req, res, next) => {
 
         if (!result.modifiedCount) {
             return res.status(400).json({
-                status: "fail",
+                status: "Fail",
                 error: "Couldn't update the Appointment with this id",
             });
         }
@@ -159,7 +159,7 @@ exports.updateAppointment = async (req, res, next) => {
         });
     } catch (error) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
             error: "Couldn't update the Appointment",
         });
     }

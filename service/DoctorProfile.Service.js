@@ -16,14 +16,16 @@ exports.getDoctorProfileService = async (filtering, queries) => {
 
 exports.createDoctorProfileService = async (data) => {
     const result = await DoctorProfiles.create(data);
-    const { _id: DoctorId } = result;
+    const { _id: DoctorProfileId, userId } = result;
+
     const res = await User.updateOne(
-        {
-            $push: { doctorId: DoctorId }
-        }
+        { _id: userId },
+        { $push: { doctorId: DoctorProfileId } },
+        { runValidators: true }
     );
     return result;
 };
+
 
 exports.getDoctorDetails = async (id) => {
     const result = await DoctorProfiles.findById(id);

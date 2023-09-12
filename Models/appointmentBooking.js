@@ -65,6 +65,7 @@ const appointmentSchema = new mongoose.Schema({
     enum: ['Pending', 'Confirmed', 'Cancelled'],
     default: 'Pending',
   },
+  patientProfileImage: String,
   notes: {
     type: String,
   },
