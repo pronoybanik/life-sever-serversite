@@ -28,7 +28,7 @@ exports.getAppointments = async (req, res, next) => {
         });
     } catch (error) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
             message: "Couldn't get the Appointments",
             error: error.message
         });
@@ -38,21 +38,23 @@ exports.getAppointments = async (req, res, next) => {
 exports.getAppointmentByUserId = async (req, res, next) => {
     try {
         const { id } = req.params;
-        
+
         const Appointment = await getAppointmentByUserIdService(id);
 
         if (!Appointment) {
             return res.status(400).json({
-                status: "fail",
+                status: "Fail",
                 error: "Couldn't find a Appointment with this id"
             })
         }
 
         res.status(200).json({
+            statusbar: 200,
             status: "success",
             data: Appointment,
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             status: "Fail",
             message: "Couldn't get the Appointments",
@@ -63,12 +65,12 @@ exports.getAppointmentByUserId = async (req, res, next) => {
 exports.getAppointmentByDoctorDetailsId = async (req, res, next) => {
     try {
         const { id } = req.params;
-        
+
         const Appointment = await getAppointmentDoctorByIdService(id);
 
         if (!Appointment) {
             return res.status(400).json({
-                status: "fail",
+                status: "Fail",
                 error: "Couldn't find a Appointment with this id"
             })
         }
@@ -78,6 +80,7 @@ exports.getAppointmentByDoctorDetailsId = async (req, res, next) => {
             data: Appointment,
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             status: "Fail",
             message: "Couldn't get the Appointments",
@@ -93,7 +96,7 @@ exports.getAppointmentById = async (req, res, next) => {
 
         if (!Appointment) {
             return res.status(400).json({
-                status: "fail",
+                status: "Fail",
                 error: "Couldn't find a Appointment with this id"
             })
         }
@@ -104,7 +107,7 @@ exports.getAppointmentById = async (req, res, next) => {
         });
     } catch (error) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
             message: "Couldn't get the Appointments",
             error: error.message
         });
@@ -119,7 +122,7 @@ exports.deleteAppointmentById = async (req, res, next) => {
 
         if (!result.deletedCount) {
             return res.status(400).json({
-                status: "fail",
+                status: "Fail",
                 error: "Couldn't delete the product"
             })
         }
@@ -130,7 +133,7 @@ exports.deleteAppointmentById = async (req, res, next) => {
         });
     } catch (error) {
         res.status(400).json({
-            status: "fail",
+            status: "Fail",
             message: "Couldn't delete the Appointment",
             error: error.message,
         });
