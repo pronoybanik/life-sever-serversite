@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const DoctorProfileControllers = require("../controllers/DoctorsProfile.Controllers")
+const DoctorProfileControllers = require("../controllers/DoctorsProfile.Controllers");
+const verifyToken = require("../middleware/verifyToken");
+const authorization = require("../middleware/authorization");
 
 
 router.route("/")
     .get(DoctorProfileControllers.getDoctorDetails)
-    .post(DoctorProfileControllers.createDoctorDetails);
+    .post(verifyToken, authorization('Patient'), DoctorProfileControllers.createDoctorDetails);
 
 router.route("/details/:id")
     .get(DoctorProfileControllers.getDoctorDetailsId)

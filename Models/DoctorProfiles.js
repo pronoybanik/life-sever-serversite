@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Schema.Types;
 
 const doctorProfileSchema = mongoose.Schema({
     userId: {
@@ -39,9 +40,13 @@ const doctorProfileSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Active', "inActive", "Blocked"], // Assuming this is a doctor-specific schema
-        default: "Active"
+        enum: ['active', "inactive", "blocked"], // Assuming this is a doctor-specific schema
+        default: "active"
     },
+    userId: [{
+        type: ObjectId,
+        ref: "DoctorProfile"
+    }],
     DoctorType: String,
     WorkingHour: String,
     PerHourCharge: Number,

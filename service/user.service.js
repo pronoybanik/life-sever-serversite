@@ -9,14 +9,15 @@ exports.findUserByEmail = async (email) => {
     return await User.findOne({ email });
 };
 exports.findUserById = async (userId) => {
-    return await User.findOne({ _id: userId });
+    return await User.findOne({ _id: userId }).populate("doctorId");
 };
 
 exports.getAllUserService = async () => {
-    return await User.findOne({});
+    return await User.find({});
 };
 
 exports.setUserRole = async (id, data) => {
     const result = await User.updateOne({ _id: id }, { $set: data }, { runValidators: true })
     return result;
 };
+

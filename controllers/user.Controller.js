@@ -1,4 +1,4 @@
-const { signupService, findUserByEmail, findUserById, setUserRole } = require("../service/user.service");
+const { signupService, findUserByEmail, findUserById, setUserRole, getAllUserService } = require("../service/user.service");
 const { generateToken } = require("../utils/token");
 
 exports.signup = async (req, res) => {

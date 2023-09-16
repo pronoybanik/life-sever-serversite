@@ -26,7 +26,6 @@ exports.createDoctorProfileService = async (data) => {
     return result;
 };
 
-
 exports.getDoctorDetails = async (id) => {
     const result = await DoctorProfiles.findById(id);
     return result;

@@ -8,11 +8,11 @@ const authorization = require("../middleware/authorization");
 const router = express.Router();
 
 router.route("/")
-    .post(verifyToken, authorization('Doctor'), appointment.createAppointment)
+    .post(verifyToken, authorization('Patient'), appointment.createAppointment)
     .get(appointment.getAppointments);
 
 router.route('/userId/:id')
-    .get(verifyToken, authorization('Doctor'), appointment.getAppointmentByUserId);
+    .get(appointment.getAppointmentByUserId);
 
 router.route('/doctorId/:id')
     .get(appointment.getAppointmentByDoctorDetailsId);
