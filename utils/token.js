@@ -5,6 +5,7 @@ exports.generateToken = (userInfo) => {
         email: userInfo.email,
         Role: userInfo.Role,
     };
+    console.log("payload", payload);
     const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
         expiresIn: "12h"
     });

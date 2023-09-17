@@ -62,7 +62,7 @@ const appointmentSchema = new mongoose.Schema({
   // You can add more fields as needed, such as status, notes, etc.
   status: {
     type: String,
-    enum: ['Pending', 'Confirmed', 'Cancelled'],
+    enum: ['Pending', 'Confirmed', 'Cancelled', 'Done'],
     default: 'Pending',
   },
   patientProfileImage: String,

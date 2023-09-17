@@ -43,11 +43,13 @@ exports.getDoctorDetails = async (req, res, next) => {
     const details = await getDoctorProfileService(filtering, queriesData);
 
     res.status(200).json({
+      statusbar: 200,
       status: "success",
       data: details,
     });
   } catch (error) {
     res.status(400).json({
+      statusbar: 400,
       status: "Fail",
       message: "Data is note defind",
       error: error.message,
@@ -66,6 +68,7 @@ exports.getDoctorDetailsId = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
+      statusbar: 400,
       status: "Fail",
       message: "Data is note defind",
       error: error.message,
@@ -80,12 +83,14 @@ exports.createDoctorDetails = async (req, res, next) => {
     const result = await createDoctorProfileService(req.body);
 
     res.status(200).json({
+      statusbar: 201,
       status: "success",
       message: "Data inserted successfully",
       data: result,
     });
   } catch (error) {
     res.status(400).json({
+      statusbar: 400,
       status: "Fail",
       message: "Data is note inserted",
       error: error.message,
@@ -98,6 +103,7 @@ exports.deleteDoctorById = async (req, res, next) => {
     const paramsId = req.params.id;
     const result = await deleteUserProfileById(paramsId);
     res.status(200).json({
+      statusbar: 200,
       status: "success",
       message: "Data inserted successfully",
       data: result,
@@ -124,6 +130,7 @@ exports.setRole = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
+      statusbar: 400,
       status: "Fail",
       message: "Data is note inserted",
       error: error.message,

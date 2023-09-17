@@ -1,5 +1,7 @@
 const express = require("express");
 const userController = require("../controllers/user.Controller");
+const verifyToken = require("../middleware/verifyToken");
+const authorization = require("../middleware/authorization");
 const router = express.Router();
 
 
@@ -9,6 +11,6 @@ router.post("/login", userController.login);
 
 router.route("/:id")
     .get(userController.userId)
-    .patch(userController.userSetRole);
+    .patch(verifyToken, authorization('Admin'), userController.userSetRole);
 
 module.exports = router;

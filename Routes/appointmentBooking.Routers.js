@@ -12,10 +12,10 @@ router.route("/")
     .get(appointment.getAppointments);
 
 router.route('/userId/:id')
-    .get(appointment.getAppointmentByUserId);
+    .get(verifyToken, authorization('Patient'), appointment.getAppointmentByUserId);
 
 router.route('/doctorId/:id')
-    .get(appointment.getAppointmentByDoctorDetailsId);
+    .get(verifyToken, authorization('Doctor'),appointment.getAppointmentByDoctorDetailsId);
 
 router.route("/:id")
     .get(appointment.getAppointmentById)
