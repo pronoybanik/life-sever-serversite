@@ -16,6 +16,7 @@ app.use(express.json());
 const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
 const Appointment = require("./Routes/appointmentBooking.Routers")
 const userRoute = require("./Routes/user.Routes")
+const FeedBackRoute = require("./Routes/feedBack.Route")
 
 // mongoose patten 
 // 1.schema > 2.model > 3.query
@@ -24,6 +25,7 @@ const userRoute = require("./Routes/user.Routes")
 app.use("/api/v1/doctorProfile", DoctorProfileRouter);
 app.use("/api/v1/appointment", Appointment);
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/feedBack", FeedBackRoute);
 
 // Data Base Connection
 mongoose.connect(process.env.DATABASE, {

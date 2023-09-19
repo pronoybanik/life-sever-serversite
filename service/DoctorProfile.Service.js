@@ -2,7 +2,8 @@ const DoctorProfiles = require("../Models/DoctorProfiles");
 const User = require("../Models/user");
 
 exports.getDoctorProfileService = async (filtering, queries) => {
-    // console.log("fields2", queries);
+    console.log("fields1", filtering);
+    console.log("fields2", queries);
     const result = await DoctorProfiles.find(filtering)
         .skip(queries.skip)
         .limit(queries.limit)

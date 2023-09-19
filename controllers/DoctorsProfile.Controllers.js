@@ -49,6 +49,7 @@ exports.getDoctorDetails = async (req, res, next) => {
     });
   } catch (error) {
     res.status(400).json({
+
       statusbar: 400,
       status: "Fail",
       message: "Data is note defind",
