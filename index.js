@@ -25,7 +25,7 @@ const FeedBackRoute = require("./Routes/feedBack.Route")
 app.use("/api/v1/doctorProfile", DoctorProfileRouter);
 app.use("/api/v1/appointment", Appointment);
 app.use("/api/v1/user", userRoute);
-app.use("/api/v1/feedBack", FeedBackRoute);
+app.use("/api/v1/userFeedBack", FeedBackRoute);
 
 // Data Base Connection
 mongoose.connect(process.env.DATABASE, {
