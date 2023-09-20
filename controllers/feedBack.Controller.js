@@ -5,6 +5,7 @@ exports.getFeedBack = async (req, res, next) => {
         const Appointments = await getFeedBackService();
 
         res.status(200).json({
+            statusbar:200,
             status: "success",
             data: Appointments
         });
