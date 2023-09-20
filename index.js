@@ -4,8 +4,8 @@ const app = express();
 const cors = require("cors");
 const port = 5000;
 require("dotenv").config();
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerJsdoc = require('swagger-jsdoc');
 
 
 app.use(cors());
@@ -37,29 +37,29 @@ mongoose.connect(process.env.DATABASE, {
 
 
 // swagger setup system
-const swaggerOptions = {
-    swaggerDefinition: {
-        // Path to the API docs
-        openapi: '3.0.0',
-        info: {
-            title: 'Node js API project Life sever useIng mongodb',
-            version: '1.0.0',
-            description: 'That is hospital website ',
+// const swaggerOptions = {
+//     swaggerDefinition: {
+//         // Path to the API docs
+//         openapi: '3.0.0',
+//         info: {
+//             title: 'Node js API project Life sever useIng mongodb',
+//             version: '1.0.0',
+//             description: 'That is hospital website ',
 
-        },
+//         },
 
-        servers: [
-            {
-                url: 'http://localhost:5000',
-            },
-        ],
-    },
-    // List of files to be processed
-    apis: ['./index.js'], // You can specify the path to your routes
-};
+//         servers: [
+//             {
+//                 url: 'http://localhost:5000',
+//             },
+//         ],
+//     },
+//     // List of files to be processed
+//     apis: ['./index.js'], // You can specify the path to your routes
+// };
 
-const swaggerSpecs = swaggerJsdoc(swaggerOptions);
-app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+// const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+// app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 
 app.get("/", (req, res) => {
