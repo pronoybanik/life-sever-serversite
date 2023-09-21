@@ -11,7 +11,6 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-
 // Route
 const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
 const Appointment = require("./Routes/appointmentBooking.Routers")
