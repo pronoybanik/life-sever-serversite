@@ -49,7 +49,7 @@ const doctorProfileSchema = mongoose.Schema({
     }],
     DoctorType: String,
     WorkingHour: String,
-    PerHourCharge: Number,
+    PerHourCharge: String,
     PushNotifications: String,
 });
 
