@@ -83,9 +83,6 @@ const userSchema = mongoose.Schema(
             validate: [validator.isURL, "Please provide a valid url"],
         },
 
-    },
-    {
-        timestamps: true,
     }
 );
 

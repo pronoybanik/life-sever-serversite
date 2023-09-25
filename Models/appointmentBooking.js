@@ -69,10 +69,6 @@ const appointmentSchema = new mongoose.Schema({
   notes: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
 });
 
 // Create a model from the schema
