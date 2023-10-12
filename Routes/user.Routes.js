@@ -11,6 +11,7 @@ router.post("/login", userController.login);
 
 router.route("/:id")
     .get(userController.userId)
-    .patch(verifyToken, authorization('Admin'), userController.userSetRole);
+    .patch(verifyToken, authorization('Admin'), userController.userSetRole)
+    .delete(userController.userDelete);
 
 module.exports = router;

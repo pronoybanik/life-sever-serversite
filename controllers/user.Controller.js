@@ -1,4 +1,4 @@
-const { signupService, findUserByEmail, findUserById, setUserRole, getAllUserService } = require("../service/user.service");
+const { signupService, findUserByEmail, findUserById, setUserRole, getAllUserService, deleteUserById } = require("../service/user.service");
 const { generateToken } = require("../utils/token");
 
 exports.signup = async (req, res) => {
@@ -133,6 +133,25 @@ exports.userSetRole = async (req, res, next) => {
     try {
         const paramsId = req.params.id;
         const result = await setUserRole(paramsId, req.body);
+        res.status(200).json({
+            statusbar: 200,
+            status: "success",
+            message: "Data inserted successfully",
+            data: result,
+        });
+    } catch (error) {
+        res.status(400).json({
+            statusbar: 400,
+            status: "Fail",
+            message: "Data is note inserted",
+            error: error.message,
+        });
+    }
+};
+exports.userDelete = async (req, res, next) => {
+    try {
+        const paramsId = req.params.id;
+        const result = await deleteUserById(paramsId);
         res.status(200).json({
             statusbar: 200,
             status: "success",

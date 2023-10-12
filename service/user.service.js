@@ -20,4 +20,8 @@ exports.setUserRole = async (id, data) => {
     const result = await User.updateOne({ _id: id }, { $set: data }, { runValidators: true })
     return result;
 };
+exports.deleteUserById = async (id) => {
+    const result = await User.findOneAndDelete({ _id: id });
+    return result;
+};
 
