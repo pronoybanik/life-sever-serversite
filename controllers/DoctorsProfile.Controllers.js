@@ -78,7 +78,6 @@ exports.getDoctorDetailsId = async (req, res, next) => {
 };
 
 exports.createDoctorDetails = async (req, res, next) => {
-  // save and create method
   try {
     // create method..
     const result = await createDoctorProfileService(req.body);

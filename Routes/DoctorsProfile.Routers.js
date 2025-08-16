@@ -5,9 +5,11 @@ const verifyToken = require("../middleware/verifyToken");
 const authorization = require("../middleware/authorization");
 
 
+
 router.route("/")
-    .get(DoctorProfileControllers.getDoctorDetails)
-    .post(verifyToken, authorization('Patient'), DoctorProfileControllers.createDoctorDetails);
+.get(DoctorProfileControllers.getDoctorDetails);
+
+router.route("/").post(verifyToken, authorization('Patient'), DoctorProfileControllers.createDoctorDetails);
 
 router.route("/details/:id")
     .get(DoctorProfileControllers.getDoctorDetailsId)

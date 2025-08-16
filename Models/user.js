@@ -78,6 +78,7 @@ const userSchema = mongoose.Schema(
                 type: String,
             }
         },
+
         imageURL: {
             type: String,
             validate: [validator.isURL, "Please provide a valid url"],
@@ -146,3 +147,16 @@ module.exports = User;
 
 
 */
+
+
+// userinfo
+// admin@gmail.com
+// Admin@123
+
+// Admin pass word
+// admin@gmail.com
+// mezba123456#A
+
+
+// pronoybanik82@gmail.com
+// Admin@123

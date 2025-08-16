@@ -32,15 +32,15 @@ const doctorProfileSchema = mongoose.Schema({
     },
     MobileNumber: String,
     Country: String,
-    DoctorProfileImage: String, // You may want to store the image URL here
+    DoctorProfileImage: String, 
     Role: {
         type: String,
-        enum: ['Doctor', "Null"], // Assuming this is a doctor-specific schema
+        enum: ['Doctor', "Null"], 
         default: "Null"
     },
     status: {
         type: String,
-        enum: ['active', "inactive", "blocked"], // Assuming this is a doctor-specific schema
+        enum: ['active', "inactive", "blocked"], 
         default: "active"
     },
     userId: [{

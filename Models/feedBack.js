@@ -22,8 +22,8 @@ const feedBackSchema = mongoose.Schema(
             type: String,
             required: [true, "Please provide a last name"],
             trim: true,
-            minLength: [3, "Name must be at least 3 characters."],
-            maxLength: [150, "Name is too large"],
+            minLength: [3, "Description must be at least 3 characters."],
+            maxLength: [150, "Description is too large"],
         },
     },
     {
