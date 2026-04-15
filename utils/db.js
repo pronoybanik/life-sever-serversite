@@ -3,18 +3,28 @@ const mongoose = require("mongoose");
 let cachedConnection = null;
 let cachedPromise = null;
 
+function getMongoUri() {
+    return (
+        process.env.DATABASE ||
+        process.env.MONGODB_URI ||
+        process.env.MONGO_URI
+    );
+}
+
 async function connectDB() {
     if (cachedConnection && mongoose.connection.readyState === 1) {
         return cachedConnection;
     }
 
-    if (!process.env.DATABASE) {
-        throw new Error("DATABASE environment variable is not set");
+    const mongoUri = getMongoUri();
+
+    if (!mongoUri) {
+        throw new Error("Missing MongoDB URI. Set one of: DATABASE, MONGODB_URI, MONGO_URI");
     }
 
     if (!cachedPromise) {
         cachedPromise = mongoose
-            .connect(process.env.DATABASE, {
+            .connect(mongoUri, {
                 serverSelectionTimeoutMS: 10000,
             })
             .then((connection) => {
