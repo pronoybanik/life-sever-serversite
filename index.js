@@ -1,15 +1,28 @@
-const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = 5000;
 require("dotenv").config();
+const connectDB = require("./utils/db");
 // const swaggerUi = require('swagger-ui-express');
 // const swaggerJsdoc = require('swagger-jsdoc');
 
 
 app.use(cors());
 app.use(express.json());
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        res.status(503).json({
+            status: "Fail",
+            error: "Database connection unavailable",
+            details: error.message,
+        });
+    }
+});
 
 // Route
 const DoctorProfileRouter = require("./Routes/DoctorsProfile.Routers")
@@ -25,15 +38,6 @@ app.use("/api/v1/doctorProfile", DoctorProfileRouter);
 app.use("/api/v1/appointment", Appointment);
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/userFeedBack", FeedBackRoute);
-
-// Data Base Connection
-mongoose.connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log('database connection is successful');
-});
-
 
 // swagger setup system
 // const swaggerOptions = {
@@ -65,9 +69,11 @@ app.get("/", (req, res) => {
     res.send("Life Server Server RunIng")
 });
 
-app.listen(port, (req, res) => {
-    console.log(`Life site server${port}`);
-});
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Life site server ${port}`);
+    });
+}
 
 module.exports = app;
 
